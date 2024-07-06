@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 
-sudo apt-get update"
+sudo apt update
+
+echo "Install jdk 17"
+
+sudo apt install java-17-openjdk -y
+
+$ dpkg -s java &> /dev/null
+if [ $? -eq 0 ]; then
+    echo "java is installed!"
+else
+    echo "java is NOT installed!"
+fi
 
 echo "Install Jenkins"
 
@@ -39,15 +50,4 @@ if [ $? -eq 0 ]; then
     echo "terraform is installed!"
 else
     echo "terraform is NOT installed!"
-fi
-
-echo "Install jdk 17"
-
-sudo apt install java-17-openjdk -y
-
-$ dpkg -s java &> /dev/null
-if [ $? -eq 0 ]; then
-    echo "java is installed!"
-else
-    echo "java is NOT installed!"
 fi

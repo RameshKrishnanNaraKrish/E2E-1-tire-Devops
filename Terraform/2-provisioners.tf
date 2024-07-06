@@ -11,7 +11,8 @@ resource "aws_instance" "ec2-provisioner-example" {
   provisioner "remote-exec" {
     inline = [
       "sudo git clone https://github.com/RameshKrishnanNaraKrish/E2E-1-tire-Devops.git",
-      "sudo sh home/ubuntu/E2E-1-tire-devops/install-jenkins-terraform.sh"
+      "cd /home/ubuntu/E2E-1-tire-Devops/",
+      "sh install-jenkins-terraform.sh"
     ]
   }
 
