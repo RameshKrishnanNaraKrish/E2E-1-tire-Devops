@@ -4,7 +4,7 @@ sudo apt update
 
 echo "Install jdk 17"
 
-sudo apt install java-17-openjdk -y
+sudo apt install openjdk-17-jre-headless -y
 
 $ dpkg -s java &> /dev/null
 if [ $? -eq 0 ]; then
