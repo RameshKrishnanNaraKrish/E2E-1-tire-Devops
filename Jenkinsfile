@@ -1,8 +1,5 @@
 def registry  ='https://ramesh2496devops.jfrog.io/'
 pipeline {
-    tools {
-        maven "maven"
-    }
     agent any
     environment {
         SCANNER_HOME= tool 'sonar-scanner'
