@@ -12,7 +12,8 @@ resource "aws_instance" "ec2-provisioner-example" {
     inline = [
       "sudo git clone https://github.com/RameshKrishnanNaraKrish/E2E-1-tire-Devops.git",
       "cd /home/ubuntu/E2E-1-tire-Devops/",
-      "sh install-jenkins-terraform.sh"
+      "sh install-jenkins-terraform.sh",
+      "sudo cp /home/ubunut/installdocker.sh  /var/lib/jenkins/"
     ]
   }
 
