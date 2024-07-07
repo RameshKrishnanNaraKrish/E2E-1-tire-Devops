@@ -1,7 +1,7 @@
 def registry  ='https://ramesh2496devops.jfrog.io/'
 pipeline {
     tools {
-        maven "Maven3"
+        maven "maven"
     }
     agent any
     environment {
