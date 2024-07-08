@@ -71,6 +71,15 @@ pipeline {
                     sh 'docker build -t springbootapp1 .'
                 }
             }
+        }
+        stage ('Push Docker Image') {
+            steps {
+                script {
+                    sh 'aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/l1b1a8r4'
+                    sh 'docker tag springbootapp1:latest public.ecr.aws/l1b1a8r4/devopsproject1:latest'
+                    sh 'docker push public.ecr.aws/l1b1a8r4/devopsproject1:latest'
+                }
+            }
         }  
     }
 }
