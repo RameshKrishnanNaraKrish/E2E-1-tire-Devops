@@ -80,6 +80,13 @@ pipeline {
                     sh 'docker push public.ecr.aws/l1b1a8r4/devopsproject1:latest'
                 }
             }
+        }
+        stage ('Deploy to Kubernetes'){
+            steps {
+                script {
+                    sh 'kubectl apply -f Kubernetes-deployment.yaml'
+                }
+            }
         }  
     }
 }
