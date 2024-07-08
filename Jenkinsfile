@@ -28,7 +28,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                script {
-                withSonarQubeEnv('sonar-scanner') {
+                withSonarQubeEnv('sonar-server') {
                 sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=E2E-1-tire-Devops -Dsonar.projectKey=RameshKrishnanNaraKrish_E2E-1-tire-Devops '''
                 }
                }
