@@ -14,7 +14,8 @@ resource "aws_instance" "ec2-provisioner-example" {
       "cd /home/ubuntu/E2E-1-tire-Devops/",
       "sh install-jenkins-terraform.sh",
       "sudo cp /home/ubuntu/E2E-1-tire-Devops/installdocker.sh  /var/lib/jenkins/",
-      "sudo cp /home/ubuntu/E2E-1-tire-Devops/install-eksctl-kubectl.sh  /var/lib/jenkins/"
+      "sudo cp /home/ubuntu/E2E-1-tire-Devops/install-eksctl.sh  /var/lib/jenkins/",
+      "sudo cp /home/ubuntu/E2E-1-tire-Devops/install-kubectl.sh  /var/lib/jenkins/"
     ]
   }
 

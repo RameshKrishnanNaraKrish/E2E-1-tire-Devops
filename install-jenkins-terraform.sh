@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 sudo apt update
 
 echo "Install jdk 17"
