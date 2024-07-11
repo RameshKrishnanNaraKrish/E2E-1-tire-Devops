@@ -172,5 +172,10 @@ Deploy simple applications on AWS, create a CI/CD pipeline in Jenkins manage inf
 
 31. Select the build and click on Pipeline Console (or) Console Output for the pipeline progress
 
+**Delete the EKS cluster** 
+
+Follow below documentation:
+
+         https://docs.aws.amazon.com/eks/latest/userguide/delete-cluster.html
 
 [E2E-project.docx](https://github.com/user-attachments/files/16170921/E2E-project.docx)
