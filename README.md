@@ -2,17 +2,16 @@
 Deploy simple application on AWS, create a CI/CD pipeline in Jenkins manage infrastructure using Terraform, Build application using maven and create docker images publish it in ECR and deploy it in EKS
 
 1. Provision infrastructure using terraform
+   terraform init
+   terraform plan
+   terraform apply --auto-approve
 
-    terraform init
-    terraform plan
-    terraform apply --auto-approve
-
-2. SSH to created eC2 instance
+3. SSH to created eC2 instance
 
     ssh -i "<.pem file> <user@ipaddress>
 
 
-3. Validate jenkins is installed and up and running
+4. Validate jenkins is installed and up and running
 
     sudo systemctl status jenkins
 
@@ -23,7 +22,7 @@ Deploy simple application on AWS, create a CI/CD pipeline in Jenkins manage infr
         sudo systemctl start jenkins
 
 
-4. Provide sudo permission to jenkins user
+5. Provide sudo permission to jenkins user
 
     sudo visudo
 
@@ -31,12 +30,12 @@ Deploy simple application on AWS, create a CI/CD pipeline in Jenkins manage infr
 
     save the file
 
-5. Switch to Jenkins user
+6. Switch to Jenkins user
 
     sudo su - jenkins
 
 
-6. Install Docker in Jenkins user
+7. Install Docker in Jenkins user
 
     for pkg in docker.io docker-doc docker-compose docker-compose-v2    podman-docker containerd runc; do sudo apt-get remove $pkg; done
     # Add Docker's official GPG key:
@@ -55,14 +54,14 @@ Deploy simple application on AWS, create a CI/CD pipeline in Jenkins manage infr
 
     sudo apt-get install docker-ce docker-ce-cli containerd.io  docker-buildx-plugin docker-compose-plugin
 
-7. Add docker user group
+8. Add docker user group
 
     sudo usermod -aG docker $USER
 
-8. Restart the instance
+9. Restart the instance
 
 
-9. Install eksctl
+10. Install eksctl
 
     # for ARM systems, set ARCH to: `arm64`, `armv6` or `armv7`
     ARCH=amd64
@@ -78,30 +77,30 @@ Deploy simple application on AWS, create a CI/CD pipeline in Jenkins manage infr
     sudo mv /tmp/eksctl /usr/local/bin
 
 
-10. Install kubectl
+11. Install kubectl
 
     curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.23.6/ bin/linux/amd64/kubectl
     chmod +x kubectl
     mkdir -p ~/.local/bin
     mv ./kubectl ~/.local/bin/kubectl
 
-11. Install awscli
+12. Install awscli
 
     sudo apt install awscli
 
-12. Configure aws
+13. Configure aws
 
     aws configure
 
-13. Create eks cluster
+14. Create eks cluster
 
     eksctl create cluster --name my-cluster5 --region us-east-1 --nodes 2 --node-type t3.medium --managed
 
-14. Access jenkins on port 8080 and follow the installation steps
+15. Access jenkins on port 8080 and follow the installation steps
 
-15. Create a admin user for jenkins
+16. Create a admin user for jenkins
 
-16. Install required plugins
+17. Install required plugins
  - SonarQube Scanner
  - Artifactory
 
