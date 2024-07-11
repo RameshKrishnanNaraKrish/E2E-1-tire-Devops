@@ -171,3 +171,6 @@ Deploy simple applications on AWS, create a CI/CD pipeline in Jenkins manage inf
 30. Click on Build now in Jenkins
 
 31. Select the build and click on Pipeline Console (or) Console Output for the pipeline progress
+
+
+[E2E-project.docx](https://github.com/user-attachments/files/16170921/E2E-project.docx)
