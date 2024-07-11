@@ -2,6 +2,7 @@
 Deploy simple application on AWS, create a CI/CD pipeline in Jenkins manage infrastructure using Terraform, Build application using maven and create docker images publish it in ECR and deploy it in EKS
 
 1. Provision infrastructure using terraform
+
    terraform init
    terraform plan
    terraform apply --auto-approve
