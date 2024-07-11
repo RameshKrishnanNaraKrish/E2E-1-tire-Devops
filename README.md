@@ -4,7 +4,9 @@ Deploy simple application on AWS, create a CI/CD pipeline in Jenkins manage infr
 1. Provision infrastructure using terraform
 
    terraform init
+
    terraform plan
+
    terraform apply --auto-approve
 
 3. SSH to created eC2 instance
