@@ -41,7 +41,6 @@ Deploy simple applications on AWS, create a CI/CD pipeline in Jenkins manage inf
 
           sudo su - jenkins
 
-
 6. Install Docker in Jenkins user
 
           for pkg in docker.io docker-doc docker-compose docker-compose-v2    podman-docker containerd runc; do sudo apt-get remove $pkg; done
@@ -87,28 +86,28 @@ Deploy simple applications on AWS, create a CI/CD pipeline in Jenkins manage inf
           mkdir -p ~/.local/bin
           mv ./kubectl ~/.local/bin/kubectl
 
-12. Install awscli
+11. Install awscli
 
           sudo apt install awscli
 
-13. Configure aws
+12. Configure aws
 
           aws configure
 
-14. Create eks cluster
+13. Create eks cluster
 
              aws eks update-kubeconfig --region us-east-1 --name my-cluster
              eksctl create cluster --name my-cluster --region us-east-1 --nodes 2 --node-type t3.medium --managed
 
-16. Access jenkins on port 8080 and follow the installation steps
+14. Access jenkins on port 8080 and follow the installation steps
 
-17. Create a admin user for jenkins
+15. Create a admin user for jenkins
 
-18. Install required plugins
+16. Install required plugins
     - SonarQube Scanner
     - Artifactory
 
-19. Add Sonarcloud credentials and jfrog credentials as secret text to Jenkins Credentials
+17. Add Sonarcloud credentials and jfrog credentials as secret text to Jenkins Credentials
 
     SonarCloud
 
@@ -122,7 +121,7 @@ Deploy simple applications on AWS, create a CI/CD pipeline in Jenkins manage inf
 
           Manage Jenkins -> Credentials -> System -> Global credentials (unrestricted) -> New credentials
 
-20. Update Jenkins system settings
+18. Update Jenkins system settings
 
        Provide SonarQube installation information
 
@@ -132,7 +131,7 @@ Deploy simple applications on AWS, create a CI/CD pipeline in Jenkins manage inf
     
           server authentication token - <provide_credential_name_which_was_added>
 
-21. Update Jenkins Tool setting
+19. Update Jenkins Tool setting
 
        Provide SonarQube Scanner installations
     
@@ -142,25 +141,25 @@ Deploy simple applications on AWS, create a CI/CD pipeline in Jenkins manage inf
     
           Name - maven3
 
-22. Create a job (Pipeline)
+20. Create a job (Pipeline)
 
-23. Update pipeline configuration
+21. Update pipeline configuration
 
     Provice SCM - Githib repository URL (provide github credentils if you are working with private repository)
 
     Specify the branch (for example: */main)
 
-24. Login to AWS management console
+22. Login to AWS management console
 
        Create ECR (Elastic Container Registry)
 
-26. Update the Registry Push commands in Jenkins file
+23. Update the Registry Push commands in Jenkins file
 
-27. Update the Registry image name with tag in Kubernetes-deployment.yaml file
+24. Update the Registry image name with tag in Kubernetes-deployment.yaml file
 
           <imagename>:<tag>
 
-29. Enable Webhooks in Github
+25. Enable Webhooks in Github
     
        Navigate to repository
     
@@ -169,9 +168,38 @@ Deploy simple applications on AWS, create a CI/CD pipeline in Jenkins manage inf
           Content type - application/json
           Which events would you like to trigger this webhook? - Send me everything.
 
-30. Click on Build now in Jenkins
+26. Click on Build now in Jenkins
 
-31. Select the build and click on Pipeline Console (or) Console Output for the pipeline progress
+27. Select the build and click on Pipeline Console (or) Console Output for the pipeline progress
+
+28. Helm Package Manager
+
+         curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+
+         chmod 700 get_helm.sh
+
+         ./get_helm.sh
+
+29. Installing Prometheus using Helm
+
+         helm repo add stable https://charts.helm.sh/stable
+         helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+         kubectl create namespace prometheus
+         helm install stable prometheus-community/kube-prometheus-stack -n prometheus
+         kubectl get pods -n prometheus
+
+30. Check Prometheus/grafana service and change the type IP cluster to Load balancer
+
+         kubectl get svc -n prometheus
+         kubectl edit svc stable-kube-prometheus-sta-prometheus -n prometheus
+
+         kubectl edit svc stable-grafana -n prometheus
+
+    Update the Type as "LoadBalancer"
+
+31. Grafana Password
+
+         kubectl get secret --namespace prometheus stable-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 
 **Delete the EKS cluster** 
 
