@@ -87,27 +87,28 @@ Deploy simple applications on AWS, create a CI/CD pipeline in Jenkins manage inf
           mkdir -p ~/.local/bin
           mv ./kubectl ~/.local/bin/kubectl
 
-11. Install awscli
+12. Install awscli
 
           sudo apt install awscli
 
-12. Configure aws
+13. Configure aws
 
           aws configure
 
-13. Create eks cluster
+14. Create eks cluster
 
-          eksctl create cluster --name my-cluster5 --region us-east-1 --nodes 2 --node-type t3.medium --managed
+             aws eks update-kubeconfig --region us-east-1 --name my-cluster
+             eksctl create cluster --name my-cluster --region us-east-1 --nodes 2 --node-type t3.medium --managed
 
-14. Access jenkins on port 8080 and follow the installation steps
+16. Access jenkins on port 8080 and follow the installation steps
 
-15. Create a admin user for jenkins
+17. Create a admin user for jenkins
 
-16. Install required plugins
+18. Install required plugins
     - SonarQube Scanner
     - Artifactory
 
-17. Add Sonarcloud credentials and jfrog credentials as secret text to Jenkins Credentials
+19. Add Sonarcloud credentials and jfrog credentials as secret text to Jenkins Credentials
 
     SonarCloud
 
@@ -121,7 +122,7 @@ Deploy simple applications on AWS, create a CI/CD pipeline in Jenkins manage inf
 
           Manage Jenkins -> Credentials -> System -> Global credentials (unrestricted) -> New credentials
 
-18. Update Jenkins system settings
+20. Update Jenkins system settings
 
        Provide SonarQube installation information
 
@@ -131,7 +132,7 @@ Deploy simple applications on AWS, create a CI/CD pipeline in Jenkins manage inf
     
           server authentication token - <provide_credential_name_which_was_added>
 
-19. Update Jenkins Tool setting
+21. Update Jenkins Tool setting
 
        Provide SonarQube Scanner installations
     
@@ -141,9 +142,9 @@ Deploy simple applications on AWS, create a CI/CD pipeline in Jenkins manage inf
     
           Name - maven3
 
-21. Create a job (Pipeline)
+22. Create a job (Pipeline)
 
-22. Update pipeline configuration
+23. Update pipeline configuration
 
     Provice SCM - Githib repository URL (provide github credentils if you are working with private repository)
 
